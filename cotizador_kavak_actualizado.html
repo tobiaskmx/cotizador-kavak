@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distribuidora Kavak - Cotizador Profesional</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .navbar {
+            background: #000000;
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -1px;
+        }
+
+        .logo-accent {
+            color: #0066FF;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #0066FF;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            padding: 140px 40px 80px;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .hero-accent {
+            color: #0066FF;
+        }
+
+        .hero p {
+            font-size: 20px;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-weight: 300;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0, 102, 255, 0.1);
+            color: #0066FF;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: -60px auto 80px;
+            padding: 0 40px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Calculator Card */
+        .calculator-card {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            padding: 50px;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            font-size: 15px;
+            color: #666666;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+            background: #fafafa;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: #0066FF;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.1);
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 30px 0;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 12px;
+        }
+
+        .checkbox-custom {
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            accent-color: #0066FF;
+        }
+
+        .checkbox-label {
+            font-size: 15px;
+            font-weight: 500;
+            color: #000000;
+            cursor: pointer;
+        }
+
+        .btn-calculate {
+            width: 100%;
+            background: linear-gradient(135deg, #0066FF 0%, #0052CC 100%);
+            color: white;
+            padding: 18px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            margin-top: 20px;
+        }
+
+        .btn-calculate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 102, 255, 0.3);
+        }
+
+        .btn-calculate:active {
+            transform: translateY(0);
+        }
+
+        /* Results Section */
+        .results-wrapper {
+            display: none;
+        }
+
+        .results-wrapper.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .vehicle-card {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .vehicle-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 102, 255, 0.15) 0%, transparent 70%);
+        }
+
+        .vehicle-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+            position: relative;
+        }
+
+        .vehicle-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            position: relative;
+        }
+
+        .stat-item {
+            border-left: 3px solid #0066FF;
+            padding-left: 20px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.7;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .promo-badge {
+            display: inline-block;
+            background: #0066FF;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-top: 20px;
+            text-transform: uppercase;
+        }
+
+        /* Toggle Section */
+        .toggle-section {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .toggle-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 30px;
+            letter-spacing: -0.5px;
+        }
+
+        .toggle-switch {
+            display: inline-flex;
+            background: #f5f5f5;
+            padding: 6px;
+            border-radius: 12px;
+            gap: 6px;
+        }
+
+        .toggle-option {
+            padding: 12px 24px;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: #666666;
+        }
+
+        .toggle-option.active {
+            background: #000000;
+            color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        /* Permanent Plans Grid */
+        .permanent-plans-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto 40px;
+        }
+
+        .permanent-plan-card {
+            background: #ffffff;
+            border: 2px solid #0066FF;
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 102, 255, 0.15);
+        }
+
+        .permanent-plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #0066FF 0%, #0052CC 100%);
+        }
+
+        .permanent-plan-badge {
+            display: inline-block;
+            background: #0066FF;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .permanent-plan-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 25px;
+            letter-spacing: -0.5px;
+        }
+
+        .permanent-plan-detail {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .permanent-plan-detail:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .permanent-plan-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .permanent-plan-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: #000000;
+            letter-spacing: -1px;
+        }
+
+        /* Plans Grid */
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .plan-card {
+            background: #ffffff;
+            border: 2px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #0066FF 0%, #0052CC 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .plan-card:hover {
+            border-color: #0066FF;
+            box-shadow: 0 10px 40px rgba(0, 102, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .plan-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .plan-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 30px;
+            letter-spacing: -0.5px;
+        }
+
+        .plan-detail {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .plan-detail:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .plan-detail-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .plan-detail-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: #000000;
+            letter-spacing: -1px;
+        }
+
+        /* Requirements Section */
+        .requirements-section {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .requirement-card {
+            background: #fafafa;
+            border-radius: 15px;
+            padding: 30px;
+            border-left: 4px solid #0066FF;
+        }
+
+        .requirement-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .requirement-icon {
+            font-size: 24px;
+        }
+
+        .requirement-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .requirement-item {
+            padding: 8px 0;
+            color: #333333;
+            font-size: 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .requirement-item::before {
+            content: '✓';
+            color: #0066FF;
+            font-weight: 700;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .delivery-badge {
+            display: inline-block;
+            background: #10b981;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 15px;
+        }
+
+        .promo-card {
+            background: linear-gradient(135deg, #0066FF 0%, #0052CC 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .promo-card-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .promo-card-text {
+            font-size: 15px;
+            opacity: 0.95;
+        }
+
+        /* Costs Card */
+        .costs-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 2px solid #e5e7eb;
+        }
+
+        .costs-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #000000;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .cost-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .cost-row:last-child {
+            border-bottom: none;
+            margin-top: 10px;
+            padding-top: 15px;
+            border-top: 2px solid #0066FF;
+        }
+
+        .cost-label {
+            font-size: 14px;
+            color: #666666;
+            font-weight: 500;
+        }
+
+        .cost-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: #000000;
+        }
+
+        .cost-row:last-child .cost-label {
+            color: #0066FF;
+            font-weight: 700;
+        }
+
+        .cost-row:last-child .cost-value {
+            color: #0066FF;
+            font-size: 18px;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000000;
+            color: white;
+            padding: 60px 40px 40px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .footer-features {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .footer-feature {
+            font-size: 14px;
+            opacity: 0.8;
+            font-weight: 500;
+        }
+
+        .footer-feature::before {
+            content: '✓ ';
+            color: #0066FF;
+            font-weight: 700;
+        }
+
+        .footer-bottom {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 13px;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 1024px) {
+            .input-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .permanent-plans-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .requirements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .toggle-switch {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .toggle-option {
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .calculator-card {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 120px 20px 60px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .container {
+                padding: 0 20px;
+            }
+
+            .vehicle-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-features {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                Distribuidora <span class="logo-accent">KAVAK</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Inventario</a>
+                <a href="#" class="nav-link">Financiamiento</a>
+                <a href="#" class="nav-link">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">Playa del Carmen</div>
+        <h1>
+            Cotizador de<br>
+            <span class="hero-accent">Financiamiento</span>
+        </h1>
+        <p>Encuentra el plan perfecto para tu próximo vehículo con las mejores condiciones del mercado</p>
+    </section>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Calculator Card -->
+        <div class="calculator-card">
+            <h2 class="section-title">Datos del Vehículo</h2>
+            <p class="section-subtitle">Ingresa la información para calcular tu financiamiento</p>
+            
+            <div class="input-grid">
+                <div class="input-wrapper">
+                    <label class="input-label">Vehículo</label>
+                    <input type="text" class="input-field" id="vehiculo" placeholder="Nissan Versa 1.6 2021">
+                </div>
+                <div class="input-wrapper">
+                    <label class="input-label">Kilometraje</label>
+                    <input type="number" class="input-field" id="kilometraje" placeholder="28,236">
+                </div>
+                <div class="input-wrapper">
+                    <label class="input-label">Precio de Lista</label>
+                    <input type="number" class="input-field" id="precio" placeholder="188,999">
+                </div>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="tienePromocion" class="checkbox-custom">
+                <label for="tienePromocion" class="checkbox-label">Este vehículo tiene una promoción especial</label>
+            </div>
+
+            <div class="input-wrapper hide" id="precioNormalGroup">
+                <label class="input-label">Precio Normal</label>
+                <input type="number" class="input-field" id="precioNormal" placeholder="Precio antes de promoción">
+            </div>
+
+            <button class="btn-calculate" onclick="generarCotizacion()">
+                Calcular Financiamiento
+            </button>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-wrapper" id="resultados">
+            <!-- Vehicle Card -->
+            <div class="vehicle-card" id="vehicleCard"></div>
+
+            <!-- Toggle Section -->
+            <div class="toggle-section">
+                <h3 class="toggle-title">Selecciona tu plan preferido</h3>
+                
+                <!-- Toggle Switch con 3 botones -->
+                <div class="toggle-switch">
+                    <button class="toggle-option active" onclick="cambiarVista('permanentes')">Planes Permanentes</button>
+                    <button class="toggle-option" onclick="cambiarVista('sinx2')">Sin Abono a Enganche</button>
+                    <button class="toggle-option" onclick="cambiarVista('conx2')">Con Abono a Enganche x2</button>
+                </div>
+            </div>
+
+            <!-- Plans Sections -->
+            <div id="planesPermanentes" class="permanent-plans-grid"></div>
+            <div id="planesSinX2" class="plans-grid hide"></div>
+            <div id="planesConX2" class="plans-grid hide"></div>
+
+            <!-- Requirements Section - Planes Permanentes -->
+            <div id="requirementsPermanentes" class="requirements-section">
+                <div class="requirements-grid">
+                    <div class="requirement-card">
+                        <div class="requirement-title">
+                            <span class="requirement-icon">📋</span>
+                            Requisitos
+                        </div>
+                        <ul class="requirement-list">
+                            <li class="requirement-item">INE VIGENTE</li>
+                            <li class="requirement-item">3 REFERENCIAS</li>
+                            <li class="requirement-item">COMPROBANTE DE DOMICILIO</li>
+                            <li class="requirement-item">3 ESTADOS DE CUENTA Y NÓMINA</li>
+                            <li class="requirement-item">COMPROBAR 3-1 MENSUALIDAD</li>
+                            <li class="requirement-item">GARANTIA HIPOTECARIA O AVAL</li>
+                            <li class="requirement-item">REVISIÓN DEL BURÓ DE CRÉDITO</li>
+                        </ul>
+                        <div class="delivery-badge">🚚 Entrega en 5 días</div>
+                    </div>
+                    <div class="requirement-card">
+                        <div class="requirement-title">
+                            <span class="requirement-icon">🎁</span>
+                            Promoción Especial
+                        </div>
+                        <div class="promo-card">
+                            <div class="promo-card-title">PROMOCIÓN POR PRIMERA VISITA</div>
+                            <div class="promo-card-text">PLACAS + SEGUROS GRATIS POR 1 AÑO</div>
+                        </div>
+                        <div class="costs-card" id="costsPermanentes"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Requirements Section - Planes GPS -->
+            <div id="requirementsGPS" class="requirements-section hide">
+                <div class="requirements-grid">
+                    <div class="requirement-card">
+                        <div class="requirement-title">
+                            <span class="requirement-icon">📋</span>
+                            Requisitos
+                        </div>
+                        <ul class="requirement-list">
+                            <li class="requirement-item">INE VIGENTE</li>
+                            <li class="requirement-item">3 REFERENCIAS</li>
+                            <li class="requirement-item">COMPROBANTE DE DOMICILIO (Recibo de luz/agua)</li>
+                            <li class="requirement-item">INSTALACIÓN DE GPS COMPLEMENTARIO</li>
+                        </ul>
+                        <div class="delivery-badge">🚚 Entrega entre 5 y 15 días</div>
+                    </div>
+                    <div class="requirement-card">
+                        <div class="requirement-title">
+                            <span class="requirement-icon">🎁</span>
+                            Promoción Especial
+                        </div>
+                        <div class="promo-card">
+                            <div class="promo-card-title">PROMOCIÓN POR PRIMERA VISITA</div>
+                            <div class="promo-card-text">PLACAS + SEGUROS GRATIS POR 1 AÑO</div>
+                        </div>
+                        <div class="costs-card" id="costsGPS"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3 class="footer-title">Distribuidora KAVAK</h3>
+            <div class="footer-features">
+                <div class="footer-feature">Financiamiento con GPS</div>
+                <div class="footer-feature">Sin Buró de Crédito</div>
+                <div class="footer-feature">Entrega en a partir de 5 días</div>
+                <div class="footer-feature">Garantía de 1 año con cobertura total</div>
+                <div class="footer-feature">Periodo de prueba de 7 días o 300 km</div>
+            </div>
+            <div class="footer-bottom">
+                © 2024 Distribuidora Kavak. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('tienePromocion').addEventListener('change', function() {
+            document.getElementById('precioNormalGroup').classList.toggle('hide', !this.checked);
+        });
+
+        function formatearMoneda(num) {
+            return '$' + Math.round(num).toLocaleString('es-MX');
+        }
+
+        function formatearKm(km) {
+            return parseInt(km).toLocaleString('es-MX');
+        }
+
+        function calcularEnganche60_84(precio) {
+            return ((precio + 15000) * 0.035) * 1.16 + (1800 * 1.16);
+        }
+
+        function calcularEnganche144(precio) {
+            return ((precio * 1.18) * 0.03) + (((precio * 1.18) * 0.03) * 0.16) + (1800 * 1.16);
+        }
+
+        function cambiarVista(vista) {
+            // Remover active de todos los botones
+            document.querySelectorAll('.toggle-option').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // Activar el botón clickeado
+            event.target.classList.add('active');
+
+            // Ocultar todas las secciones de planes
+            document.getElementById('planesPermanentes').classList.add('hide');
+            document.getElementById('planesSinX2').classList.add('hide');
+            document.getElementById('planesConX2').classList.add('hide');
+
+            // Ocultar todas las secciones de requisitos
+            document.getElementById('requirementsPermanentes').classList.add('hide');
+            document.getElementById('requirementsGPS').classList.add('hide');
+
+            // Mostrar la sección correspondiente
+            if (vista === 'permanentes') {
+                document.getElementById('planesPermanentes').classList.remove('hide');
+                document.getElementById('requirementsPermanentes').classList.remove('hide');
+            } else if (vista === 'sinx2') {
+                document.getElementById('planesSinX2').classList.remove('hide');
+                document.getElementById('requirementsGPS').classList.remove('hide');
+            } else {
+                document.getElementById('planesConX2').classList.remove('hide');
+                document.getElementById('requirementsGPS').classList.remove('hide');
+            }
+        }
+
+        function generarCotizacion() {
+            const vehiculo = document.getElementById('vehiculo').value;
+            const kilometraje = document.getElementById('kilometraje').value;
+            const precio = parseFloat(document.getElementById('precio').value);
+            const tienePromo = document.getElementById('tienePromocion').checked;
+            const precioNormal = parseFloat(document.getElementById('precioNormal').value) || 0;
+
+            if (!vehiculo || !kilometraje || !precio) {
+                alert('Por favor completa todos los campos obligatorios');
+                return;
+            }
+
+            const B8 = precio;
+
+            // ===== COSTOS DE PLACAS Y SEGURO =====
+            const costoPlacas = 4000; // D14
+            const costoSeguro = B8 * 0.0578; // D15
+            const costoTotal = costoPlacas + costoSeguro;
+
+            // Generar HTML de costos
+            const costsHTML = `
+                <div class="costs-title">💰 Costo de Trámites</div>
+                <div class="cost-row">
+                    <span class="cost-label">Placas</span>
+                    <span class="cost-value">${formatearMoneda(costoPlacas)}</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">Seguro Anual</span>
+                    <span class="cost-value">${formatearMoneda(costoSeguro)}</span>
+                </div>
+                <div class="cost-row">
+                    <span class="cost-label">TOTAL</span>
+                    <span class="cost-value">${formatearMoneda(costoTotal)}</span>
+                </div>
+            `;
+
+            // Insertar en ambas secciones
+            document.getElementById('costsPermanentes').innerHTML = costsHTML;
+            document.getElementById('costsGPS').innerHTML = costsHTML;
+
+            // ===== PLANES PERMANENTES DE 48 MESES =====
+            
+            // Constantes
+            const D14 = 4000;
+            const D15 = B8 * 0.0578;
+
+            // PLAN 1: 48 meses - Interés Anual 13.9%
+            const enganchePlan1 = (B8 * 0.35) + D14 + D15;
+            const B11_Plan1 = B8;
+            const mensualidadPlan1 = B11_Plan1 * 0.023063;
+
+            // PLAN 2: 48 meses - Interés Mensual 2%
+            const D18 = mensualidadPlan1;
+            const enganchePlan2 = D18 + (B11_Plan1 * 0.03 * 1.16) + D15 + D14;
+            const B11_Plan2 = B8;
+            const mensualidadPlan2 = B11_Plan2 * 0.035;
+
+            // Generar HTML de planes permanentes
+            let permanentHTML = `
+                <div class="permanent-plan-card">
+                    <div class="permanent-plan-badge">48 MESES</div>
+                    <div class="permanent-plan-name">Plan Agencia - Int. Anual 13.9%</div>
+                    <div class="permanent-plan-detail">
+                        <span class="permanent-plan-label">Enganche</span>
+                        <span class="permanent-plan-value">${formatearMoneda(enganchePlan1)}</span>
+                    </div>
+                    <div class="permanent-plan-detail">
+                        <span class="permanent-plan-label">Mensualidad</span>
+                        <span class="permanent-plan-value">${formatearMoneda(mensualidadPlan1)}</span>
+                    </div>
+                </div>
+                <div class="permanent-plan-card">
+                    <div class="permanent-plan-badge">48 MESES</div>
+                    <div class="permanent-plan-name">Plan Agencia - Int. Mensual 2%</div>
+                    <div class="permanent-plan-detail">
+                        <span class="permanent-plan-label">Enganche</span>
+                        <span class="permanent-plan-value">${formatearMoneda(enganchePlan2)}</span>
+                    </div>
+                    <div class="permanent-plan-detail">
+                        <span class="permanent-plan-label">Mensualidad</span>
+                        <span class="permanent-plan-value">${formatearMoneda(mensualidadPlan2)}</span>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('planesPermanentes').innerHTML = permanentHTML;
+
+            // ===== PLANES VARIABLES (60, 72, 84, 144) =====
+            
+            const enganche60_84 = calcularEnganche60_84(precio);
+            const enganche144 = calcularEnganche144(precio);
+
+            // SIN x2
+            const mensSinX2_60 = (precio + 15000) * 0.025;
+            const mensSinX2_72 = (precio + 15000) * 0.0225;
+            const mensSinX2_84 = (precio + 15000) * 0.02;
+            const mensSinX2_144 = (precio * 1.18) * 0.01;
+
+            // CON x2 - FÓRMULA ACTUALIZADA CON 3.87
+            const saldoConX2_60_84 = precio - (enganche60_84 * 2 * 3.87);
+            const saldoConX2_144 = precio - (enganche144 * 2 * 3.87);
+
+            const mensConX2_60 = (saldoConX2_60_84 + 15000) * 0.025;
+            const mensConX2_72 = (saldoConX2_60_84 + 15000) * 0.0225;
+            const mensConX2_84 = (saldoConX2_60_84 + 15000) * 0.02;
+            const mensConX2_144 = (saldoConX2_144 * 1.18) * 0.01;
+
+            // Vehicle Card
+            let vehicleHTML = `
+                <div class="vehicle-title">${vehiculo}</div>
+                <div class="vehicle-stats">
+                    <div class="stat-item">
+                        <div class="stat-label">Kilometraje</div>
+                        <div class="stat-value">${formatearKm(kilometraje)} km</div>
+                    </div>
+            `;
+
+            if (tienePromo && precioNormal > 0) {
+                const ahorro = precioNormal - precio;
+                vehicleHTML += `
+                    <div class="stat-item">
+                        <div class="stat-label">Precio Normal</div>
+                        <div class="stat-value">${formatearMoneda(precioNormal)}</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Precio Promoción</div>
+                        <div class="stat-value">${formatearMoneda(precio)}</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Tu Ahorro</div>
+                        <div class="stat-value">${formatearMoneda(ahorro)}</div>
+                    </div>
+                `;
+            } else {
+                vehicleHTML += `
+                    <div class="stat-item">
+                        <div class="stat-label">Precio</div>
+                        <div class="stat-value">${formatearMoneda(precio)}</div>
+                    </div>
+                `;
+            }
+
+            vehicleHTML += '</div>';
+            if (tienePromo && precioNormal > 0) {
+                vehicleHTML += '<div class="promo-badge">PROMOCIÓN ACTIVA</div>';
+            }
+
+            document.getElementById('vehicleCard').innerHTML = vehicleHTML;
+
+            // Planes SIN x2
+            const planesSinX2 = [
+                { nombre: 'Plan 60 Meses', enganche: enganche60_84, mensualidad: mensSinX2_60 },
+                { nombre: 'Plan 72 Meses', enganche: enganche60_84, mensualidad: mensSinX2_72 },
+                { nombre: 'Plan 84 Meses', enganche: enganche60_84, mensualidad: mensSinX2_84 },
+                { nombre: 'Plan 144 Meses', enganche: enganche144, mensualidad: mensSinX2_144 }
+            ];
+
+            let htmlSinX2 = '';
+            planesSinX2.forEach(plan => {
+                htmlSinX2 += `
+                    <div class="plan-card">
+                        <div class="plan-name">${plan.nombre}</div>
+                        <div class="plan-detail">
+                            <span class="plan-detail-label">Enganche</span>
+                            <span class="plan-detail-value">${formatearMoneda(plan.enganche)}</span>
+                        </div>
+                        <div class="plan-detail">
+                            <span class="plan-detail-label">Mensualidad</span>
+                            <span class="plan-detail-value">${formatearMoneda(plan.mensualidad)}</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Planes CON x2
+            const planesConX2 = [
+                { nombre: 'Plan 60 Meses', enganche: enganche60_84 * 2, mensualidad: mensConX2_60 },
+                { nombre: 'Plan 72 Meses', enganche: enganche60_84 * 2, mensualidad: mensConX2_72 },
+                { nombre: 'Plan 84 Meses', enganche: enganche60_84 * 2, mensualidad: mensConX2_84 },
+                { nombre: 'Plan 144 Meses', enganche: enganche144 * 2, mensualidad: mensConX2_144 }
+            ];
+
+            let htmlConX2 = '';
+            planesConX2.forEach(plan => {
+                htmlConX2 += `
+                    <div class="plan-card">
+                        <div class="plan-name">${plan.nombre}</div>
+                        <div class="plan-detail">
+                            <span class="plan-detail-label">Enganche x2</span>
+                            <span class="plan-detail-value">${formatearMoneda(plan.enganche)}</span>
+                        </div>
+                        <div class="plan-detail">
+                            <span class="plan-detail-label">Mensualidad</span>
+                            <span class="plan-detail-value">${formatearMoneda(plan.mensualidad)}</span>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('planesSinX2').innerHTML = htmlSinX2;
+            document.getElementById('planesConX2').innerHTML = htmlConX2;
+            document.getElementById('resultados').classList.add('active');
+            document.getElementById('resultados').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Asesores - KAVAK</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f5f5f5; color: #000; height: 100vh; display: flex; flex-direction: column; }
+
+        /* Navbar simplificada */
+        .navbar { background: #000000; padding: 20px 0; width: 100%; box-shadow: 0 2px 20px rgba(0,0,0,0.1); }
+        .nav-content { max-width: 1400px; margin: 0 auto; padding: 0 40px; text-align: center; }
+        .logo { font-size: 24px; font-weight: 800; color: #ffffff; letter-spacing: -1px; }
+        .logo-accent { color: #0066FF; }
+
+        /* Contenedor del Login */
+        .login-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        }
+
+        .login-card {
+            background: #ffffff;
+            padding: 50px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .login-title { font-size: 28px; font-weight: 800; margin-bottom: 10px; color: #000; letter-spacing: -1px; }
+        .login-subtitle { color: #666; margin-bottom: 30px; font-size: 15px; }
+
+        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; text-transform: uppercase; }
+        .input-field {
+            width: 100%; padding: 16px; border: 2px solid #e0e0e0; border-radius: 12px;
+            font-size: 16px; transition: all 0.3s; font-family: 'Inter', sans-serif;
+        }
+        .input-field:focus { outline: none; border-color: #0066FF; background: #fff; }
+
+        .btn-login {
+            width: 100%; background: linear-gradient(135deg, #0066FF 0%, #0052CC 100%);
+            color: white; padding: 18px; border: none; border-radius: 12px;
+            font-size: 16px; font-weight: 700; cursor: pointer; text-transform: uppercase;
+            margin-top: 10px; transition: transform 0.2s;
+        }
+        .btn-login:hover { transform: translateY(-2px); }
+
+        .error-msg {
+            color: #ef4444; background: #fee2e2; padding: 10px; border-radius: 8px;
+            font-size: 14px; margin-bottom: 20px; display: none; font-weight: 500;
+        }
+
+        .footer { text-align: center; color: rgba(255,255,255,0.4); padding: 20px; font-size: 12px; background: #000; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">Distribuidora <span class="logo-accent">KAVAK</span></div>
+        </div>
+    </nav>
+
+    <div class="login-container">
+        <div class="login-card">
+            <h1 class="login-title">Bienvenido</h1>
+            <p class="login-subtitle">Ingresa tus credenciales de asesor para acceder al cotizador.</p>
+
+            <div id="errorMsg" class="error-msg">Usuario o contraseña incorrectos</div>
+
+            <form onsubmit="validarLogin(event)">
+                <div class="input-group">
+                    <label class="input-label">Usuario</label>
+                    <input type="text" id="usuario" class="input-field" placeholder="Ej. asesor">
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Contraseña</label>
+                    <input type="password" id="password" class="input-field" placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn-login">Ingresar al Sistema</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        © 2024 Distribuidora Kavak - Acceso Exclusivo Personal Autorizado
+    </footer>
+
+    <script>
+        function validarLogin(e) {
+            e.preventDefault(); // Evita que la página se recargue
+            
+            const usuario = document.getElementById('usuario').value;
+            const pass = document.getElementById('password').value;
+            const errorDiv = document.getElementById('errorMsg');
+
+            // --- AQUÍ PUEDES CAMBIAR LA CONTRASEÑA ---
+            // Usuario: asesor
+            // Contraseña: kavak2025
+            if (usuario.toLowerCase() === 'asesor' && pass === 'kavak2025') {
+                // Si es correcto, redirige al cotizador
+                window.location.href = 'cotizador.html';
+            } else {
+                // Si es incorrecto, muestra error
+                errorDiv.style.display = 'block';
+                // Hace vibrar el botón (efecto visual)
+                document.querySelector('.btn-login').style.transform = 'translateX(5px)';
+                setTimeout(() => {
+                    document.querySelector('.btn-login').style.transform = 'translateX(0)';
+                }, 100);
+            }
+        }
+    </script>
+</body>
+</html>
