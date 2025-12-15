@@ -104,15 +104,19 @@
             const errorDiv = document.getElementById('errorMsg');
 
             // --- AQUÍ PUEDES CAMBIAR LA CONTRASEÑA ---
-            // Usuario: asesor
-            // Contraseña: kavak2025
             if (usuario.toLowerCase() === 'asesor' && pass === 'kavak2025') {
-                // Si es correcto, redirige al cotizador
+                
+                // === AQUÍ ESTÁ EL CAMBIO IMPORTANTE ===
+                // Creamos el "sello" de seguridad
+                sessionStorage.setItem('acceso_kavak', 'permitido');
+                
+                // Redirigimos al cotizador
                 window.location.href = 'cotizador.html';
+
             } else {
                 // Si es incorrecto, muestra error
                 errorDiv.style.display = 'block';
-                // Hace vibrar el botón (efecto visual)
+                // Hace vibrar el botón
                 document.querySelector('.btn-login').style.transform = 'translateX(5px)';
                 setTimeout(() => {
                     document.querySelector('.btn-login').style.transform = 'translateX(0)';
