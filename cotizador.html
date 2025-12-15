@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <script>
+        // Si no tienes el sello 'permitido', te mando al login
+        if (sessionStorage.getItem('acceso_kavak') !== 'permitido') {
+            window.location.href = 'index.html';
+        }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Distribuidora Kavak - Cotizador Profesional</title>
@@ -777,7 +783,6 @@
     </style>
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-content">
             <div class="logo">
@@ -791,7 +796,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-badge">Playa del Carmen</div>
         <h1>
@@ -801,9 +805,7 @@
         <p>Encuentra el plan perfecto para tu próximo vehículo con las mejores condiciones del mercado</p>
     </section>
 
-    <!-- Main Container -->
     <div class="container">
-        <!-- Calculator Card -->
         <div class="calculator-card">
             <h2 class="section-title">Datos del Vehículo</h2>
             <p class="section-subtitle">Ingresa la información para calcular tu financiamiento</p>
@@ -838,16 +840,12 @@
             </button>
         </div>
 
-        <!-- Results Section -->
         <div class="results-wrapper" id="resultados">
-            <!-- Vehicle Card -->
             <div class="vehicle-card" id="vehicleCard"></div>
 
-            <!-- Toggle Section -->
             <div class="toggle-section">
                 <h3 class="toggle-title">Selecciona tu plan preferido</h3>
                 
-                <!-- Toggle Switch con 3 botones -->
                 <div class="toggle-switch">
                     <button class="toggle-option active" onclick="cambiarVista('permanentes')">Planes Permanentes</button>
                     <button class="toggle-option" onclick="cambiarVista('sinx2')">Sin Abono a Enganche</button>
@@ -855,12 +853,10 @@
                 </div>
             </div>
 
-            <!-- Plans Sections -->
             <div id="planesPermanentes" class="permanent-plans-grid"></div>
             <div id="planesSinX2" class="plans-grid hide"></div>
             <div id="planesConX2" class="plans-grid hide"></div>
 
-            <!-- Requirements Section - Planes Permanentes -->
             <div id="requirementsPermanentes" class="requirements-section">
                 <div class="requirements-grid">
                     <div class="requirement-card">
@@ -893,7 +889,6 @@
                 </div>
             </div>
 
-            <!-- Requirements Section - Planes GPS -->
             <div id="requirementsGPS" class="requirements-section hide">
                 <div class="requirements-grid">
                     <div class="requirement-card">
@@ -925,7 +920,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <h3 class="footer-title">Distribuidora KAVAK</h3>
